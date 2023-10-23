@@ -180,15 +180,15 @@ void Cheats::Run()
 
 		if (!Entity.IsInScreen())
 			continue;
-		//	// Bone Debug
-		///*	for (int BoneIndex = 0; BoneIndex < Entity.BoneData.BonePosList.size(); BoneIndex++)
-		//	{
-		//		Vec2 ScreenPos{};
-		//		if (gGame.View.WorldToScreen(Entity.BoneData.BonePosList[BoneIndex].Pos, ScreenPos))
-		//		{
-		//			Gui.Text(std::to_string(BoneIndex), ScreenPos, ImColor(255, 255, 255, 255));
-		//		}
-		//	}*/
+			// Bone Debug
+			//for (int BoneIndex = 0; BoneIndex < Entity.GetBone().BonePosList.size(); BoneIndex++)
+			//{
+			//	Vec2 ScreenPos{};
+			//	if (gGame.View.WorldToScreen(Entity.GetBone().BonePosList[BoneIndex].Pos, ScreenPos))
+			//	{
+			//		Gui.Text(std::to_string(BoneIndex), ScreenPos, ImColor(255, 255, 255, 255));
+			//	}
+			//}
 
 		DistanceToSight = Entity.GetBone().BonePosList[BONEINDEX::head].ScreenPos.DistanceTo({ Gui.Window.Size.x / 2,Gui.Window.Size.y / 2 });
 
@@ -271,7 +271,7 @@ void Cheats::Run()
 		//			Gui.StrokeText(Entity.Controller.PlayerName, { Rect.x + Rect.z / 2,Rect.y - 13 - 14 }, ImColor(255, 255, 255, 255), 14, true);
 		//	}
 
-		//}
+		}
 
 		//// Fov line
 		//if (MenuConfig::ShowFovLine)
@@ -303,6 +303,10 @@ void Cheats::Run()
 
 		if (MenuConfig::BunnyHop)
 			Bunnyhop::Run(LocalEntity);
+		if (MenuConfig::Debug) {
+			Gui.Text("Camera:" + LocalEntity.Pawn.CameraPos.toString(), Vec2{ 100,300 }, ImColor(255, 255, 255, 255));
+			Gui.Text("AimPos:" + AimPos.toString(), Vec2{ 100,320 }, ImColor(255, 255, 255, 255));
+		}
 
 		if (MenuConfig::AimSwitch && GetAsyncKeyState(AimControl::HotKey))
 		{
@@ -311,5 +315,4 @@ void Cheats::Run()
 				AimControl::AimBot(LocalEntity, LocalEntity.Pawn.CameraPos, AimPos);
 			}
 		}
-	}
 }

@@ -1,11 +1,13 @@
 #pragma once
 #include "UI_ImGui_Exception.hpp"
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <functional>
 #include <codecvt>
 #include <vector>
 #include <numbers>
+#include <iomanip> 
 #include <cmath>
 #include <dwmapi.h>
 #include "imgui/imgui.h"
@@ -25,48 +27,48 @@ class Vec2
 public:
 	float x, y;
 public:
-	Vec2() :x(0.f), y(0.f) {}
-	Vec2(float x_, float y_) :x(x_), y(y_) {}
-	Vec2(ImVec2 ImVec2_) :x(ImVec2_.x), y(ImVec2_.y) {}
-	Vec2 operator=(ImVec2 ImVec2_)
+	constexpr Vec2() :x(0.f), y(0.f) {}
+	constexpr Vec2(float x_, float y_) :x(x_), y(y_) {}
+	constexpr Vec2(ImVec2 ImVec2_) :x(ImVec2_.x), y(ImVec2_.y) {}
+	constexpr const Vec2 operator=(ImVec2 ImVec2_)
 	{
 		x = ImVec2_.x;
 		y = ImVec2_.y;
 		return *this;
 	}
-	Vec2 operator+(Vec2 Vec2_)
+	constexpr const Vec2 operator+(const Vec2& Vec2_) const
 	{
 		return { x + Vec2_.x,y + Vec2_.y };
 	}
-	Vec2 operator-(Vec2 Vec2_)
+	constexpr const Vec2 operator-(const Vec2& Vec2_) const
 	{
 		return { x - Vec2_.x,y - Vec2_.y };
 	}
-	Vec2 operator*(Vec2 Vec2_)
+	constexpr const Vec2 operator*(const Vec2& Vec2_) const
 	{
 		return { x * Vec2_.x,y * Vec2_.y };
 	}
-	Vec2 operator/(Vec2 Vec2_)
+	constexpr const Vec2 operator/(const Vec2& Vec2_) const
 	{
 		return { x / Vec2_.x,y / Vec2_.y };
 	}
-	Vec2 operator*(float n)
+	constexpr const Vec2 operator*(float n) const
 	{
 		return { x / n,y / n };
 	}
-	Vec2 operator/(float n)
+	constexpr const Vec2 operator/(float n) const
 	{
 		return { x / n,y / n };
 	}
-	bool operator==(Vec2 Vec2_)
+	bool operator==(const Vec2& Vec2_) 
 	{
 		return x == Vec2_.x && y == Vec2_.y;
 	}
-	bool operator!=(Vec2 Vec2_)
+	bool operator!=(const Vec2& Vec2_)
 	{
 		return x != Vec2_.x || y != Vec2_.y;
 	}
-	ImVec2 ToImVec2()
+	constexpr const ImVec2 ToImVec2() const
 	{
 		return ImVec2(x, y);
 	}
@@ -77,6 +79,11 @@ public:
 	float DistanceTo(const Vec2& Pos)
 	{
 		return sqrtf(powf(Pos.x - x, 2) + powf(Pos.y - y, 2));
+	}
+	std::string toString() const {
+		std::ostringstream ss;
+		ss << std::fixed << "Pitch: " << std::setprecision(3) << x << ", Yaw: " << std::setprecision(3) << y;
+		return ss.str();
 	}
 };
 
@@ -133,6 +140,11 @@ public:
 			std::atan2(y,x) * (180.0f / std::numbers::pi_v<float>),
 			0.0f
 		};
+	}
+	std::string toString() const {
+		std::ostringstream ss;
+		ss << std::fixed << "x: " << std::setprecision(3) << x << ", y: " << std::setprecision(3) << y << ", z: " << std::setprecision(3) << z;
+		return ss.str();
 	}
 };
 constexpr const Vec3 CalculateAngle(const Vec3& localPosition, const Vec3& enemyPosition, const Vec3& viewAngle)

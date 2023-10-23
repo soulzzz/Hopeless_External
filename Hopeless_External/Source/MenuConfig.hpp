@@ -5,6 +5,7 @@
 
 namespace MenuConfig
 {
+	inline bool Debug = true;
 	inline bool ShowBoneESP = true;
 	inline bool ShowBoxESP = true;
 	inline bool ShowHealthBar = true;
