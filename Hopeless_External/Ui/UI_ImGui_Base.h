@@ -5,6 +5,8 @@
 #include <functional>
 #include <codecvt>
 #include <vector>
+#include <numbers>
+#include <cmath>
 #include <dwmapi.h>
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_win32.h"
@@ -83,37 +85,37 @@ class Vec3
 public:
 	float x, y, z;
 public:
-	Vec3() :x(0.f), y(0.f), z(0.f) {}
-	Vec3(float x_, float y_, float z_) :x(x_), y(y_), z(z_) {}
-	Vec3 operator+(Vec3 Vec3_)
+	constexpr Vec3() :x(0.f), y(0.f), z(0.f) {}
+	constexpr Vec3(float x_,float y_, float z_) :x(x_), y(y_), z(z_) {}
+	constexpr const Vec3 operator+(const Vec3& Vec3_) const
 	{
-		return { x + Vec3_.x,y + Vec3_.y,z + Vec3_.z };
+		return Vec3{ x + Vec3_.x,y + Vec3_.y,z + Vec3_.z };
 	}
-	Vec3 operator-(Vec3 Vec3_)
+	constexpr const Vec3 operator-(const Vec3& Vec3_) const
 	{
-		return { x - Vec3_.x,y - Vec3_.y,z - Vec3_.z };
+		return Vec3{ x - Vec3_.x,y - Vec3_.y,z - Vec3_.z };
 	}
-	Vec3 operator*(Vec3 Vec3_)
+	constexpr const Vec3 operator*(const Vec3& Vec3_) const
 	{
-		return { x * Vec3_.x,y * Vec3_.y,z * Vec3_.z };
+		return Vec3{ x * Vec3_.x,y * Vec3_.y,z * Vec3_.z };
 	}
-	Vec3 operator/(Vec3 Vec3_)
+	constexpr const Vec3 operator/(const Vec3& Vec3_) const
 	{
-		return { x / Vec3_.x,y / Vec3_.y,z / Vec3_.z };
+		return Vec3{ x / Vec3_.x,y / Vec3_.y,z / Vec3_.z };
 	}
-	Vec3 operator*(float n)
+	constexpr const Vec3 operator*(const float n) const
 	{
-		return { x * n,y * n,z * n };
+		return Vec3{ x * n,y * n,z * n };
 	}
-	Vec3 operator/(float n)
+	constexpr const Vec3 operator/(const float n) const
 	{
-		return { x / n,y / n,z / n };
+		return Vec3{ x / n,y / n,z / n };
 	}
-	bool operator==(Vec3 Vec3_)
+	bool operator==(const Vec3& Vec3_)
 	{
 		return x == Vec3_.x && y == Vec3_.y && z == Vec3_.z;
 	}
-	bool operator!=(Vec3 Vec3_)
+	bool operator!=(const Vec3& Vec3_)
 	{
 		return x != Vec3_.x || y != Vec3_.y || z != Vec3_.z;
 	}
@@ -125,7 +127,18 @@ public:
 	{
 		return sqrtf(powf(Pos.x - x, 2) + powf(Pos.y - y, 2) + powf(Pos.z - z, 2));
 	}
+	constexpr const Vec3 ToAngle() const {
+		return Vec3{
+			std::atan2(-z,std::hypot(x,y)) * (180.0f / std::numbers::pi_v<float>),
+			std::atan2(y,x) * (180.0f / std::numbers::pi_v<float>),
+			0.0f
+		};
+	}
 };
+constexpr const Vec3 CalculateAngle(const Vec3& localPosition, const Vec3& enemyPosition, const Vec3& viewAngle)
+{
+	return (enemyPosition - localPosition).ToAngle() - viewAngle;
+}
 
 template <typename T>
 class Singleton

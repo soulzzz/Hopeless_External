@@ -54,4 +54,5 @@ namespace AimControl
 
 		gGame.SetViewAngle(Yaw, Pitch);
 	}
+
 }
