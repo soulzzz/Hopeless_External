@@ -5,6 +5,7 @@
 #include <map>
 #include "Entity.h"
 #include "Format.hpp"
+#include "MenuConfig.hpp"
 
 namespace Render
 {
