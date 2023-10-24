@@ -48,6 +48,8 @@ public:
 
 	bool SetViewAngle(float Yaw, float Pitch);
 
+	bool SetViewAngle(Vec2& aimAngle);
+
 	bool SetForceJump(int Value);
 };
 

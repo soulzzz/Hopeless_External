@@ -8,19 +8,19 @@
 
 namespace Render
 {
-	/*void DrawFovCircle(const CEntity& LocalEntity)
+	void DrawFovCircle(const CEntity& LocalEntity)
 	{
 		Vec2 CenterPoint = Gui.Window.Size / 2;
 		float Radius = tan(AimControl::AimFov / 180.f * M_PI / 2.f) / tan(LocalEntity.Pawn.Fov / 180.f * M_PI / 2.f) * Gui.Window.Size.x;
 		Gui.Circle(CenterPoint, Radius, MenuConfig::AimFovRangeColor, 1);
 	}
 
-	void DrawCrossHair()
-	{
-		Vec2 SightPos = Gui.Window.Size / 2;
-		Gui.Line({ SightPos.x - MenuConfig::CrossHairSize,SightPos.y }, { SightPos.x + MenuConfig::CrossHairSize,SightPos.y }, MenuConfig::CrossHairColor, 1);
-		Gui.Line({ SightPos.x,SightPos.y - MenuConfig::CrossHairSize }, { SightPos.x ,SightPos.y + MenuConfig::CrossHairSize }, MenuConfig::CrossHairColor, 1);
-	}*/
+	//void DrawCrossHair()
+	//{
+	//	Vec2 SightPos = Gui.Window.Size / 2;
+	//	Gui.Line({ SightPos.x - MenuConfig::CrossHairSize,SightPos.y }, { SightPos.x + MenuConfig::CrossHairSize,SightPos.y }, MenuConfig::CrossHairColor, 1);
+	//	Gui.Line({ SightPos.x,SightPos.y - MenuConfig::CrossHairSize }, { SightPos.x ,SightPos.y + MenuConfig::CrossHairSize }, MenuConfig::CrossHairColor, 1);
+	//}
 
 	void LineToEnemy(ImVec4 Rect, ImColor Color, float Thickness)
 	{

@@ -78,6 +78,16 @@ bool CGame::SetViewAngle(float Yaw, float Pitch)
 	return true;
 }
 
+bool CGame::SetViewAngle(Vec2& aimAngle)
+{
+
+	if (!ProcessMgr.WriteMemory<Vec2>(this->Address.ViewAngle, aimAngle))
+		return false;
+
+	return true;
+}
+
+
 bool CGame::SetForceJump(int value)
 {
 	if (!ProcessMgr.WriteMemory<int>(this->Address.ForceJump, value))

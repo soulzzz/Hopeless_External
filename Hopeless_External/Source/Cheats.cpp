@@ -297,9 +297,9 @@ void Cheats::Run()
 		//if (MenuConfig::ShowCrossHair)
 		//	Render::DrawCrossHair();
 
-		//// Fov circle
-		//if (MenuConfig::ShowAimFovRange)
-		//	Render::DrawFovCircle(LocalEntity);
+		// Fov circle
+		if (MenuConfig::ShowAimFovRange)
+			Render::DrawFovCircle(LocalEntity);
 
 		if (MenuConfig::BunnyHop)
 			Bunnyhop::Run(LocalEntity);
