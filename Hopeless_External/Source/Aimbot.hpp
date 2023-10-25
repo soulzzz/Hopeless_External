@@ -23,17 +23,21 @@ namespace AimControl
 
 	inline void ClampAngles(Vec2& angles)
 	{
-		while (angles.y > 180.0f)
+		while (angles.y > 180.0f) {
 			angles.y -= 360.0f;
-
-		while (angles.y < -180.0f)
+		}
+			
+		while (angles.y < -180.0f) {
 			angles.y += 360.0f;
-
-		while (angles.x > 89.0f)
+		}
+			
+		while (angles.x > 89.0f) {
 			angles.x -= 180.0f;
-
-		while (angles.x < -89.0f)
+		}
+			
+		while (angles.x < -89.0f) {
 			angles.x += 180.0f;
+		}
 	}
 
 	inline void AimBot(const CEntity& Local, Vec3 LocalPos, Vec3 AimPos)
@@ -59,8 +63,8 @@ namespace AimControl
 		//if (Norm > AimFov)
 		//	return;
 
-		//Yaw = Yaw * Smooth + Local.Pawn.ViewAngle.y;
-		//Pitch = Pitch * Smooth + Local.Pawn.ViewAngle.x;
+		Yaw = Yaw * Smooth + Local.Pawn.ViewAngle.y;
+		Pitch = Pitch * Smooth + Local.Pawn.ViewAngle.x;
 
 		//// Recoil control
 		//if (Local.Pawn.ShotsFired > RCSBullet)

@@ -1,5 +1,4 @@
 #include "Game.h"
-
 bool CGame::InitAddress()
 {
 	this->Address.ClientDLL = reinterpret_cast<DWORD64>(ProcessMgr.GetProcessModuleHandle("client.dll"));
@@ -11,7 +10,6 @@ bool CGame::InitAddress()
 	this->Address.LocalPawn = GetClientDLLAddress() + Offset::LocalPlayerPawn;
 	this->Address.ForceJump = GetClientDLLAddress() + Offset::ForceJump;
 	this->Address.GlobalVars = GetClientDLLAddress() + Offset::GlobalVars;
-
 	return this->Address.ClientDLL != 0;
 }
 

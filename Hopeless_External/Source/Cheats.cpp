@@ -256,9 +256,9 @@ void Cheats::Run()
 			Render::DrawHealthBar(EntityAddress, 100, Entity.Pawn.Health, HealthBarPos, HealthBarSize, MenuConfig::HealthBarType);
 		}
 
-		//	// Draw weaponName
-		//	if (MenuConfig::ShowWeaponESP)
-		//		Gui.StrokeText(Entity.Pawn.WeaponName, { Rect.x,Rect.y + Rect.w }, ImColor(255, 255, 255, 255), 14);
+			// Draw weaponName
+			/*if (MenuConfig::ShowWeaponESP)
+				Gui.StrokeText(Entity.Pawn.WeaponName, { Rect.x,Rect.y + Rect.w }, ImColor(255, 255, 255, 255), 14);*/
 
 		//	if (MenuConfig::ShowDistance)
 		//		Render::DrawDistance(LocalEntity, Entity, Rect);
